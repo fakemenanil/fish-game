@@ -82,5 +82,12 @@ public class Obstacle : MonoBehaviour
             newPos.z = 40;
             transform.position = newPos;
         }
+
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            //Instantiate(roadSection, new Vector3(0,0,36), Quaternion.identity);
+            
+            transform.position = GetRandomPositionInRadius(radius);
+        }
     }
 }

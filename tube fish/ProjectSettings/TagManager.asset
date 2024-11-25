@@ -8,6 +8,7 @@ TagManager:
   - RoadSectionTrigger
   - DeleteRoad
   - Enemy
+  - Gold
   layers:
   - Default
   - TransparentFX

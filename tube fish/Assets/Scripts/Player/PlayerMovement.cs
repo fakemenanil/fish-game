@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,15 +12,17 @@ public class PlayerMovement : MonoBehaviour
     public DynamicJoystick joystick;
     public float health;
     public RectTransform healthBar;
+    int runGold;
+    public TMP_Text goldText;
 
     void Start()
     {
         health = 100;
+        runGold = 0;
     }
 
     void Update()
     {
-        
         float horizontalInput = joystick.Horizontal;
         float verticalInput = joystick.Vertical;
 
@@ -66,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Die()
     {
+        Debug.LogWarning("Öldün");
+        PlayerPrefs.SetInt("TotalGold", PlayerPrefs.GetInt("TotalGold") + runGold);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
@@ -74,6 +79,13 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.tag == "Enemy")
         {
             health -= other.GetComponent<Obstacle>().damage;
+        }
+
+        if(other.gameObject.tag == "Gold")
+        {
+            runGold++;
+            PlayerPrefs.SetInt("RunGold", runGold);
+            goldText.text = runGold.ToString();
         }
     }
 }

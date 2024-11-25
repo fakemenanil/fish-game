@@ -10,8 +10,12 @@ public class GameManager : MonoBehaviour
     float horizontalStrenght;
     float verticalStrenght;
     public float maxStrenght;
+    public GameObject fadeOut;
+    PlayerMovement player;
     void Start()
     {
+        player = FindAnyObjectByType<PlayerMovement>();
+        fadeOut.SetActive(true);
         StartCoroutine(ChangeDirection());
         horizontalStrenght = 0;
         horizontalStrenght = 0;
@@ -67,4 +71,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(phaseLenght);
         yield return ChangeDirection();
     }
+
+    
 }
