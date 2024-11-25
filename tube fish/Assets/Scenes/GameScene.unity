@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: 0
-  damage: 10
+  damage: 25
   radius: 3
   tentacle: {fileID: 648274284}
   bottle: {fileID: 1190668126}
@@ -1862,8 +1862,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 466355305}
-  - {fileID: 533935798}
   - {fileID: 1823823942}
+  - {fileID: 533935798}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
