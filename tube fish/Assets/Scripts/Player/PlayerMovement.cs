@@ -14,9 +14,11 @@ public class PlayerMovement : MonoBehaviour
     public RectTransform healthBar;
     int runGold;
     public TMP_Text goldText;
+    PlayerMovement player;
 
     void Start()
     {
+        player = GetComponent<PlayerMovement>();
         health = 100;
         runGold = 0;
     }
@@ -31,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         healthBar.localScale = new Vector3(health/100,1,1);
         Debug.Log(health);
 
-        if(health<=0)
+        if(health==0)
         {
             Die();
         }
@@ -69,9 +71,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Die()
     {
+        player.enabled = false;
         Debug.LogWarning("Öldün");
         PlayerPrefs.SetInt("TotalGold", PlayerPrefs.GetInt("TotalGold") + runGold);
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        SceneManager.LoadSceneAsync(0);
     }
 
     void OnTriggerEnter(Collider other) 
