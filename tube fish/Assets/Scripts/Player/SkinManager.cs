@@ -75,6 +75,7 @@ public class SkinManager : MonoBehaviour
             pirana.SetActive(false);
             shark.SetActive(false);
             angler.SetActive(true);
+            Debug.LogWarning("Skin Angler");
         }
     }
 }

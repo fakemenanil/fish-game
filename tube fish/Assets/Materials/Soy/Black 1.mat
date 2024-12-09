@@ -102,7 +102,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _BackwardsStrength: -0.0059897504
+    - _BackwardsStrength: 0.0052041598
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -127,7 +127,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Shininess: 0
-    - _SidewaysStrength: 0
+    - _SidewaysStrength: -0.00079583604
     - _Smoothness: 0.30996522
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0

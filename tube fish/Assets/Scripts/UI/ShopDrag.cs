@@ -5,7 +5,9 @@ public class ShopDrag : MonoBehaviour
     private Vector2 lastTouchPosition; // Bir önceki dokunma pozisyonu
     private bool isDragging = false; // Ekranın sürüklenip sürüklenmediğini takip eder
 
-    public float sensitivity = 0.1f; // Ekran kaydırma hassasiyeti
+    public float sensitivity ; // Ekran kaydırma hassasiyeti
+    public float minX ; // X ekseni minimum sınırı
+    public float maxX ;  // X ekseni maksimum sınırı
 
     void Update()
     {
@@ -28,6 +30,9 @@ public class ShopDrag : MonoBehaviour
                 // X ekseninde objeyi hareket ettir
                 transform.position += new Vector3(touchDelta.x * sensitivity, 0, 0);
 
+                // X eksenini sınırlara göre kısıtla
+                ClampPosition();
+
                 // Son dokunma pozisyonunu güncelle
                 lastTouchPosition = touch.position;
             }
@@ -49,6 +54,10 @@ public class ShopDrag : MonoBehaviour
         {
             Vector2 touchDelta = (Vector2)Input.mousePosition - lastTouchPosition;
             transform.position += new Vector3(touchDelta.x * sensitivity, 0, 0);
+
+            // X eksenini sınırlara göre kısıtla
+            ClampPosition();
+
             lastTouchPosition = Input.mousePosition;
         }
         else if (Input.GetMouseButtonUp(0))
@@ -56,5 +65,12 @@ public class ShopDrag : MonoBehaviour
             isDragging = false;
         }
 #endif
+    }
+
+    private void ClampPosition()
+    {
+        // X pozisyonunu sınırla
+        float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
+        transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
 }

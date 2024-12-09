@@ -1,5 +1,7 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +14,11 @@ public class GameManager : MonoBehaviour
     public float maxStrenght;
     public GameObject fadeOut;
     PlayerMovement player;
+
+    public TMP_Text scoreText;
+    public TMP_Text highScoreText;
+    public Move tube,gold,obstacle;
+    public float gameStopSpeed;
     void Start()
     {
         player = FindAnyObjectByType<PlayerMovement>();
@@ -23,45 +30,57 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        foreach(Material mat in bendingMat)
+        if(!player.dead)
         {
-            mat.SetFloat("_SidewaysStrength", horizontalStrenght);
-            mat.SetFloat("_BackwardsStrength", verticalStrenght);
+            foreach(Material mat in bendingMat)
+            {
+                mat.SetFloat("_SidewaysStrength", horizontalStrenght);
+                mat.SetFloat("_BackwardsStrength", verticalStrenght);
+            }
+
+            if(gamePhase==1)
+            {
+                horizontalStrenght = Mathf.Lerp(horizontalStrenght, maxStrenght, bendSpeed);
+                verticalStrenght = Mathf.Lerp(verticalStrenght, 0, bendSpeed);
+                Debug.Log("Phase 1");
+            }
+
+            if(gamePhase==2)
+            {
+                horizontalStrenght = Mathf.Lerp(horizontalStrenght, -maxStrenght, bendSpeed);
+                verticalStrenght = Mathf.Lerp(verticalStrenght, 0, bendSpeed);
+                Debug.Log("Phase 2");
+            }
+
+            if(gamePhase==3)
+            {
+                horizontalStrenght = Mathf.Lerp(horizontalStrenght, 0, bendSpeed);
+                verticalStrenght = Mathf.Lerp(verticalStrenght, maxStrenght, bendSpeed);
+                Debug.Log("Phase 3");
+            }
+
+            if(gamePhase==4)
+            {
+                horizontalStrenght = Mathf.Lerp(horizontalStrenght, 0, bendSpeed);
+                verticalStrenght = Mathf.Lerp(verticalStrenght, -maxStrenght, bendSpeed);
+                Debug.Log("Phase 4");
+            }
+
+            if(gamePhase==5)
+            {
+                horizontalStrenght = Mathf.Lerp(horizontalStrenght, 0, bendSpeed);
+                verticalStrenght = Mathf.Lerp(verticalStrenght, 0, bendSpeed);
+                Debug.Log("Phase 5");
+            }
         }
 
-        if(gamePhase==1)
+        if(player.dead == true)
         {
-            horizontalStrenght = Mathf.Lerp(horizontalStrenght, maxStrenght, bendSpeed);
-            verticalStrenght = Mathf.Lerp(verticalStrenght, 0, bendSpeed);
-            Debug.Log("Phase 1");
-        }
-
-        if(gamePhase==2)
-        {
-            horizontalStrenght = Mathf.Lerp(horizontalStrenght, -maxStrenght, bendSpeed);
-            verticalStrenght = Mathf.Lerp(verticalStrenght, 0, bendSpeed);
-            Debug.Log("Phase 2");
-        }
-
-        if(gamePhase==3)
-        {
-            horizontalStrenght = Mathf.Lerp(horizontalStrenght, 0, bendSpeed);
-            verticalStrenght = Mathf.Lerp(verticalStrenght, maxStrenght, bendSpeed);
-            Debug.Log("Phase 3");
-        }
-
-        if(gamePhase==4)
-        {
-            horizontalStrenght = Mathf.Lerp(horizontalStrenght, 0, bendSpeed);
-            verticalStrenght = Mathf.Lerp(verticalStrenght, -maxStrenght, bendSpeed);
-            Debug.Log("Phase 4");
-        }
-
-        if(gamePhase==5)
-        {
-            horizontalStrenght = Mathf.Lerp(horizontalStrenght, 0, bendSpeed);
-            verticalStrenght = Mathf.Lerp(verticalStrenght, 0, bendSpeed);
-            Debug.Log("Phase 5");
+            scoreText.text = player.runGold.ToString();
+            highScoreText.text = PlayerPrefs.GetInt("HighScore").ToString();
+            tube.speed = Mathf.Lerp(tube.speed,0,gameStopSpeed);
+            gold.speed = Mathf.Lerp(tube.speed,0,gameStopSpeed);
+            obstacle.speed = Mathf.Lerp(tube.speed,0,gameStopSpeed);
         }
     }
 
@@ -72,5 +91,14 @@ public class GameManager : MonoBehaviour
         yield return ChangeDirection();
     }
 
+    public void BacktoMenu()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadSceneAsync(1);
+    }
     
 }

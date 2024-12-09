@@ -23,6 +23,7 @@ public class MenuManager : MonoBehaviour
     public ShopDrag fishDragger;
 
     public GameObject swordUnlock, sharkUnlock, piranhaUnlock, lionUnlock, anglerUnlock;
+    public SkinManager playerSkinManager;
     int shopFish;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,8 +37,8 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
         goldText.text = PlayerPrefs.GetInt("TotalGold").ToString();
-        shopFish = shopTrigger.fish;
         UpdateShopSkin();
+        shopFish = shopTrigger.fish;
     }
 
     public void Play()
@@ -68,6 +69,7 @@ public class MenuManager : MonoBehaviour
         playButton.SetActive(true);
         fishDragger.enabled = false;
         shopAnim.SetBool("On", false);
+        playerSkinManager.UpdateSkin();
     }
 
     public void UpdateShopSkin()
@@ -85,71 +87,81 @@ public class MenuManager : MonoBehaviour
         if(shopFish == 1 && PlayerPrefs.GetInt("SwordUnlocked") ==1)
         {
             PlayerPrefs.SetInt("Skin",1);
+            Debug.Log("Seçilen skin Swordfish");
         }
 
-        else if(shopFish == 1 && PlayerPrefs.GetInt("SwordUnlocked") !=1)
+        else if(shopFish == 1 && PlayerPrefs.GetInt("SwordUnlocked") ==0)
         {
             swordUnlock.SetActive(true);
             sharkUnlock.SetActive(false);
             piranhaUnlock.SetActive(false);
             lionUnlock.SetActive(false);
             anglerUnlock.SetActive(false);
+            Debug.Log("Swordfish kilitli");
         }
 
 
         if(shopFish == 2 && PlayerPrefs.GetInt("SharkUnlocked") ==1)
         {
             PlayerPrefs.SetInt("Skin",2);
+            Debug.Log("Seçilen skin Shark");
         }
 
-        else if(shopFish == 2 && PlayerPrefs.GetInt("SharkUnlocked") !=1)
+        else if(shopFish == 2 && PlayerPrefs.GetInt("SharkUnlocked") ==0)
         {
             sharkUnlock.SetActive(true);
             swordUnlock.SetActive(false);
             piranhaUnlock.SetActive(false);
             lionUnlock.SetActive(false);
             anglerUnlock.SetActive(false);
+            Debug.Log("Shark kilitli");
         }
 
         if(shopFish == 3 && PlayerPrefs.GetInt("PiranhaUnlocked") ==1)
         {
             PlayerPrefs.SetInt("Skin",3);
+            Debug.Log("Seçilen skin Piranha");
         }
 
-        else if(shopFish == 3 && PlayerPrefs.GetInt("PiranhaUnlocked") !=1)
+        else if(shopFish == 3 && PlayerPrefs.GetInt("PiranhaUnlocked") ==0)
         {
             piranhaUnlock.SetActive(true);
             swordUnlock.SetActive(false);
             sharkUnlock.SetActive(false);
             lionUnlock.SetActive(false);
             anglerUnlock.SetActive(false);
+            Debug.Log("Piranha kilitli");
         }
 
         if(shopFish == 4 && PlayerPrefs.GetInt("LionUnlocked") ==1)
         {
             PlayerPrefs.SetInt("Skin",4);
+            Debug.Log("Seçilen skin Lionfish");
         }
 
-        else if(shopFish == 4 && PlayerPrefs.GetInt("LionUnlocked") !=1)
+        else if(shopFish == 4 && PlayerPrefs.GetInt("LionUnlocked") ==0)
         {
             lionUnlock.SetActive(true);
             swordUnlock.SetActive(false);
             sharkUnlock.SetActive(false);
             piranhaUnlock.SetActive(false);
             anglerUnlock.SetActive(false);
+            Debug.Log("Lionfish kilitli");
         }
 
         if(shopFish == 5 && PlayerPrefs.GetInt("AnglerUnlocked") ==1)
         {
             PlayerPrefs.SetInt("Skin",5);
+            Debug.Log("Seçilen skin Anglerfish");
         }
-        else if(shopFish == 5 && PlayerPrefs.GetInt("AnglerUnlocked") !=1)
+        else if(shopFish == 5 && PlayerPrefs.GetInt("AnglerUnlocked") ==0)
         {
             anglerUnlock.SetActive(true);
             swordUnlock.SetActive(false);
             sharkUnlock.SetActive(false);
             piranhaUnlock.SetActive(false);
             lionUnlock.SetActive(false);
+            Debug.Log("Anglerfish kilitli");
         }
     }
 
