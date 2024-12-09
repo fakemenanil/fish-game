@@ -47,6 +47,19 @@ public class MenuManager : MonoBehaviour
         fadePanel.SetActive(true);
     }
 
+    public void ResetPrefs()
+    {
+        PlayerPrefs.SetInt("AnglerUnlocked", 0);
+        PlayerPrefs.SetInt("HighScore", 0);
+        PlayerPrefs.SetInt("LionUnlocked", 0);
+        PlayerPrefs.SetInt("PiranhaUnlocked", 0);
+        PlayerPrefs.SetInt("RunGold", 0);
+        PlayerPrefs.SetInt("SharkUnlocked", 0);
+        PlayerPrefs.SetInt("Skin", 0);
+        PlayerPrefs.SetInt("SwordUnlocked", 0);
+        PlayerPrefs.SetInt("TotalGold", 0);
+    }
+
     IEnumerator StartPlay()
     {
         playerMove.enabled = true;
