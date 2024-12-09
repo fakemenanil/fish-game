@@ -30,8 +30,8 @@ public class SkinManager : MonoBehaviour
         if(skin==1)
         {
             butterfly.SetActive(false);
-            lionFish.SetActive(true);
-            swordFish.SetActive(false);
+            lionFish.SetActive(false);
+            swordFish.SetActive(true);
             pirana.SetActive(false);
             shark.SetActive(false);
             angler.SetActive(false);
@@ -41,9 +41,9 @@ public class SkinManager : MonoBehaviour
         {
             butterfly.SetActive(false);
             lionFish.SetActive(false);
-            swordFish.SetActive(true);
+            swordFish.SetActive(false);
             pirana.SetActive(false);
-            shark.SetActive(false);
+            shark.SetActive(true);
             angler.SetActive(false);
         }
 
@@ -60,10 +60,10 @@ public class SkinManager : MonoBehaviour
         if(skin==4)
         {
             butterfly.SetActive(false);
-            lionFish.SetActive(false);
+            lionFish.SetActive(true);
             swordFish.SetActive(false);
             pirana.SetActive(false);
-            shark.SetActive(true);
+            shark.SetActive(false);
             angler.SetActive(false);
         }
 

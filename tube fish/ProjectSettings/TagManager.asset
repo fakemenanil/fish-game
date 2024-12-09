@@ -9,6 +9,12 @@ TagManager:
   - DeleteRoad
   - Enemy
   - Gold
+  - Butterfly
+  - Shark
+  - Sword
+  - Pirana
+  - Lion
+  - Angler
   layers:
   - Default
   - TransparentFX
@@ -41,7 +47,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - MenuFishLayer
   m_SortingLayers:
   - name: Default
     uniqueID: 0
