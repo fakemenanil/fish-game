@@ -59,8 +59,7 @@ public class MenuManager : MonoBehaviour
     {
         shopAnim.SetBool("On", true);
         fishDragger.enabled = true;
-        shopButton.SetActive(false);
-        playButton.SetActive(false);
+        StartCoroutine(OpenShop(2));
     }
 
     public void CloseShop()
@@ -70,6 +69,13 @@ public class MenuManager : MonoBehaviour
         fishDragger.enabled = false;
         shopAnim.SetBool("On", false);
         playerSkinManager.UpdateSkin();
+    }
+
+    private IEnumerator OpenShop(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        shopButton.SetActive(false);
+        playButton.SetActive(false);
     }
 
     public void UpdateShopSkin()
