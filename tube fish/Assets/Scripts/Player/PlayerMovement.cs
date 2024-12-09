@@ -100,6 +100,8 @@ public class PlayerMovement : MonoBehaviour
 
         StartCoroutine(MoveToY(targetY));
 
+        player.enabled = false;
+
         if(runGold>PlayerPrefs.GetInt("HighScore"))
         {
             PlayerPrefs.SetInt("HighScore", runGold);
