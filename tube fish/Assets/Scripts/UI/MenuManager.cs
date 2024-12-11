@@ -24,6 +24,8 @@ public class MenuManager : MonoBehaviour
 
     public GameObject swordUnlock, sharkUnlock, piranhaUnlock, lionUnlock, anglerUnlock;
     public SkinManager playerSkinManager;
+    public AudioSource menuMusic;
+    public AudioSource bubbleSfx;
     int shopFish;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,6 +46,14 @@ public class MenuManager : MonoBehaviour
     public void Play()
     {
         StartCoroutine(StartPlay());
+        
+        IEnumerator fadeMenuMusic = AudioFadeOut.FadeOut(menuMusic,0.5f);
+        StartCoroutine(fadeMenuMusic);
+
+        bubbleSfx.Play();
+        IEnumerator bubbleFade = AudioFadeOut.FadeOut(bubbleSfx,0.5f);
+        StartCoroutine(bubbleFade);
+
         fadePanel.SetActive(true);
     }
 

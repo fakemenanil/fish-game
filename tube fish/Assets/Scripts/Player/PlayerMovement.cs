@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     public bool dead;
 
     public GameObject recordIndicator;
+    [HideInInspector] public bool slow;
+    public float slowduration;
     int skin;
 
     void Start()
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         runGold = 0;
         skin = PlayerPrefs.GetInt("Skin");
         UpdateSkin();
+        slow = false;
     }
 
 
@@ -49,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Move(horizontalInput, verticalInput);
             Rotate(horizontalInput, verticalInput); 
+            
+            
         }
         healthBar.localScale = new Vector3(health/100,1,1);
         Debug.Log(health);
@@ -101,12 +106,6 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(MoveToY(targetY));
 
         player.enabled = false;
-
-        if(runGold>PlayerPrefs.GetInt("HighScore"))
-        {
-            PlayerPrefs.SetInt("HighScore", runGold);
-            recordIndicator.SetActive(true);
-        }
     }
 
     void OnTriggerEnter(Collider other) 
@@ -121,6 +120,11 @@ public class PlayerMovement : MonoBehaviour
             runGold++;
             PlayerPrefs.SetInt("RunGold", runGold);
             goldText.text = runGold.ToString();
+        }
+
+        if(other.gameObject.tag == "Slow")
+        {
+            StartCoroutine(SlowTime());
         }
     }
 
@@ -212,5 +216,12 @@ public class PlayerMovement : MonoBehaviour
 
         // Son olarak hedef pozisyona tam olarak yerleştir
         transform.position = new Vector3(transform.position.x, targetY, transform.position.z);
+    }
+
+    private IEnumerator SlowTime()
+    {
+        slow = true;
+        yield return new WaitForSeconds(slowduration);
+        slow = false;
     }
 }

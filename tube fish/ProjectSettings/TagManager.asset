@@ -15,11 +15,13 @@ TagManager:
   - Pirana
   - Lion
   - Angler
+  - Slow
+  - SlowTrigger
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProccesing
   - Water
   - UI
   - 

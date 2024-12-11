@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 23
+  resetTag: DeleteRoad
   spawnObstacles: 0
 --- !u!114 &6069239504814246958
 MonoBehaviour:
